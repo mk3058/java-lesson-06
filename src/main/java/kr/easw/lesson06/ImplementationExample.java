@@ -2,9 +2,9 @@ package kr.easw.lesson06;
 
 /**
  * 해당 클래스는 인터페이스에 대해 조금 더 친숙해지기 위해 구성된 문제입니다.
- *
- * Dog 클래스를 참고하여, Cat과 Horse 클래스를 Animal 인터페이스를 구현하도록 만들어보세요.
- * 해당 예제는 의도적으로 오류가 발생하도록 구성되었으며, Animal을 구현하지 않은 클래스는 오류가 발생합니다.
+ * <p>
+ * Dog 클래스를 참고하여, Cat과 Horse 클래스를 Animal 인터페이스를 구현하도록 만들어보세요. 해당 예제는 의도적으로 오류가 발생하도록 구성되었으며, Animal을
+ * 구현하지 않은 클래스는 오류가 발생합니다.
  */
 public class ImplementationExample {
 
@@ -20,6 +20,7 @@ public class ImplementationExample {
     // 자바 7까지는 인터페이스에서 몸체(body)가 있는 메서드를 사용할 수 없었으나, 자바 8부터는 default 키워드를 사용하여 몸체가 있는 메서드를 사용할 수 있습니다.
     // 이번 예제에서는 default 키워드를 실습하지 않습니다.
     interface Animal {
+
         // 몸체(body)가 없이 선언된 인터페이스의 메서드는 이 인터페이스를 상속한 클래스에 이 메서드의 구현을 강제합니다.
         void speak();
     }
@@ -27,6 +28,7 @@ public class ImplementationExample {
     // 이 클래스를 final로 선언함으로써 Dog 클래스에서 추가적으로 파생되는 클래스가 존재하지 못하도록 강제합니다.
     // final로 선언된 클래스는 상속할 수 없습니다.
     final static class Dog implements Animal {
+
         private void bark() {
             System.out.println("Bark!");
         }
@@ -41,15 +43,27 @@ public class ImplementationExample {
     }
 
 
-    static class Cat {
+    static class Cat implements Animal {
+
         private void meow() {
             System.out.println("Meow!");
         }
+
+        @Override
+        public void speak() {
+            meow();
+        }
     }
 
-    static class Horse {
+    static class Horse implements Animal {
+
         private void neigh() {
             System.out.println("Neigh!");
+        }
+
+        @Override
+        public void speak() {
+            neigh();
         }
     }
 }
